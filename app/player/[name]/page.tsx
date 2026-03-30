@@ -65,7 +65,7 @@ export default async function PlayerPage({
 
           <section className="stack-md">
             <div className="section-title" style={{ marginBottom: 0 }}>
-              <h2>מצבי משחק — עונה נוכחית</h2>
+              <h2>עונה נוכחית</h2>
               <span className="pill">{seasonModes.length} מצבים פעילים</span>
             </div>
             <div className="grid mode-grid">
@@ -75,21 +75,21 @@ export default async function PlayerPage({
 
           <section className="stack-md">
             <div className="section-title" style={{ marginBottom: 0 }}>
-              <h2>Ranked</h2>
-              <span className="pill">תחרותי</span>
+              <h2>דירוג תחרותי</h2>
+              <span className="pill">Ranked</span>
             </div>
             <div className="grid mode-grid">
-              {rankedModes.length ? rankedModes.map(([mode, stats]) => <ModeStatsTable key={mode} title={mode} stats={stats} />) : <div className="muted-box">לא הוחזרו נתוני ranked לעונה הזו.</div>}
+              {rankedModes.length ? rankedModes.map(([mode, stats]) => <ModeStatsTable key={mode} title={mode} stats={stats} />) : <div className="muted-box">אין נתוני דירוג לעונה זו.</div>}
             </div>
           </section>
 
           <section className="stack-md">
             <div className="section-title" style={{ marginBottom: 0 }}>
-              <h2>Lifetime</h2>
-              <span className="pill">קריירה</span>
+              <h2>קריירה</h2>
+              <span className="pill">Lifetime</span>
             </div>
             <div className="grid mode-grid">
-              {lifetimeModes.length ? lifetimeModes.map(([mode, stats]) => <ModeStatsTable key={mode} title={mode} stats={stats} />) : <div className="muted-box">לא הוחזרו נתוני lifetime.</div>}
+              {lifetimeModes.length ? lifetimeModes.map(([mode, stats]) => <ModeStatsTable key={mode} title={mode} stats={stats} />) : <div className="muted-box">אין נתוני קריירה.</div>}
             </div>
           </section>
 

@@ -155,10 +155,15 @@ function sanitizePlayerName(name: string) {
 }
 
 function normalizeModeStats(input?: Partial<PlayerModeStats>): PlayerModeStats {
+  const kills = input?.kills ?? 0;
+  const losses = input?.losses ?? 0;
+  const kdFromApi = input?.killDeathRatio ?? 0;
+  const killDeathRatio = kdFromApi > 0 ? kdFromApi : losses > 0 ? kills / losses : kills;
+
   return {
     wins: input?.wins ?? 0,
     top10s: input?.top10s ?? 0,
-    kills: input?.kills ?? 0,
+    kills,
     assists: input?.assists ?? 0,
     dBNOs: input?.dBNOs ?? 0,
     roundsPlayed: input?.roundsPlayed ?? 0,
@@ -167,8 +172,8 @@ function normalizeModeStats(input?: Partial<PlayerModeStats>): PlayerModeStats {
     longestKill: input?.longestKill ?? 0,
     revives: input?.revives ?? 0,
     timeSurvived: input?.timeSurvived ?? 0,
-    losses: input?.losses ?? 0,
-    killDeathRatio: input?.killDeathRatio ?? 0,
+    losses,
+    killDeathRatio,
   };
 }
 

@@ -62,54 +62,38 @@ export default async function MatchPage({
             <StatCard label="משך משחק" value={formatDuration(match.duration)} />
             <StatCard label="משתתפים" value={String(match.participantCount)} />
             <StatCard label="קבוצות" value={String(match.rosterCount)} />
-            <StatCard label="מנצח" value={winner?.name ?? 'Unknown'} />
+            <StatCard label="מנצח" value={winner?.name ?? 'לא ידוע'} />
           </div>
 
           <div className="grid dual-grid">
             <div className="card section-card">
               <div className="section-title">
-                <h2>Telemetry</h2>
-                <span className="pill">סיכום אירועים</span>
+                <h2>אירועי משחק</h2>
+                <span className="pill">Telemetry</span>
               </div>
               {match.telemetrySummary ? (
                 <div className="small-list">
                   <div className="small-item"><span>סה״כ אירועים</span><strong>{match.telemetrySummary.totalEvents.toLocaleString()}</strong></div>
                   <div className="small-item"><span>סוגי אירועים</span><strong>{match.telemetrySummary.eventTypeCount.toLocaleString()}</strong></div>
-                  <div className="small-item"><span>אירועי Kill</span><strong>{match.telemetrySummary.killsLogged.toLocaleString()}</strong></div>
-                  <div className="small-item"><span>Knockdowns</span><strong>{match.telemetrySummary.knockdownsLogged.toLocaleString()}</strong></div>
-                  <div className="small-item"><span>Phase changes</span><strong>{match.telemetrySummary.phaseChanges.toLocaleString()}</strong></div>
+                  <div className="small-item"><span>הריגות מתועדות</span><strong>{match.telemetrySummary.killsLogged.toLocaleString()}</strong></div>
+                  <div className="small-item"><span>הפלות מתועדות</span><strong>{match.telemetrySummary.knockdownsLogged.toLocaleString()}</strong></div>
+                  <div className="small-item"><span>שינויי שלב</span><strong>{match.telemetrySummary.phaseChanges.toLocaleString()}</strong></div>
                 </div>
               ) : (
-                <div className="muted-box">לא ניתן היה לסכם את telemetry בסביבה הזו, אבל קישור ה-asset יופיע למטה אם הוא זמין.</div>
+                <div className="muted-box">אין נתוני אירועים זמינים למשחק זה.</div>
               )}
-
-              {match.telemetryUrl ? (
-                <p className="subtle link-wrap" style={{ marginTop: 16 }}>{match.telemetryUrl}</p>
-              ) : null}
             </div>
 
             <div className="card section-card">
               <div className="section-title">
                 <h2>עובדות מהירות</h2>
-                <span className="pill">Snapshot</span>
               </div>
               <div className="small-list">
-                <div className="small-item"><span>מקום ראשון</span><strong>{winner?.name ?? 'Unknown'}</strong></div>
-                <div className="small-item"><span>מוביל הריגות</span><strong>{killLeader ? `${killLeader.name} · ${killLeader.kills}` : '0'}</strong></div>
-                <div className="small-item"><span>מוביל נזק</span><strong>{damageLeader ? `${damageLeader.name} · ${damageLeader.damageDealt.toFixed(0)}` : '0'}</strong></div>
-                <div className="small-item"><span>הירייה הארוכה ביותר</span><strong>{match.participants.length ? `${Math.max(...match.participants.map((p) => p.longestKill)).toFixed(0)} m` : '0 m'}</strong></div>
+                <div className="small-item"><span>מקום ראשון</span><strong>{winner?.name ?? 'לא ידוע'}</strong></div>
+                <div className="small-item"><span>מוביל הריגות</span><strong>{killLeader ? `${killLeader.name} · ${killLeader.kills}` : '—'}</strong></div>
+                <div className="small-item"><span>מוביל נזק</span><strong>{damageLeader ? `${damageLeader.name} · ${damageLeader.damageDealt.toFixed(0)}` : '—'}</strong></div>
+                <div className="small-item"><span>ירייה ארוכה</span><strong>{match.participants.length ? `${Math.max(...match.participants.map((p) => p.longestKill)).toFixed(0)} מ׳` : '—'}</strong></div>
               </div>
-
-              {match.telemetrySummary?.topEventTypes?.length ? (
-                <div className="top-event-list">
-                  {match.telemetrySummary.topEventTypes.map((event) => (
-                    <div className="small-item" key={event.type}>
-                      <span>{event.type}</span>
-                      <strong>{event.count.toLocaleString()}</strong>
-                    </div>
-                  ))}
-                </div>
-              ) : null}
             </div>
           </div>
 

@@ -3,7 +3,7 @@ import { MatchParticipantSummary } from '@/lib/types';
 function formatDuration(seconds: number) {
   const mins = Math.floor(seconds / 60);
   const secs = Math.round(seconds % 60);
-  return `${mins}m ${secs}s`;
+  return `${mins}ד ${secs}ש`;
 }
 
 type Props = {
@@ -14,25 +14,25 @@ export function MatchParticipantsTable({ participants }: Props) {
   return (
     <div className="card section-card">
       <div className="section-title">
-        <h2>Participants</h2>
-        <span className="pill">{participants.length} players</span>
+        <h2>משתתפים</h2>
+        <span className="pill">{participants.length} שחקנים</span>
       </div>
 
       <div style={{ overflowX: 'auto' }}>
         <table className="stat-table wide-table">
           <thead>
             <tr>
-              <th>Place</th>
-              <th>Player</th>
-              <th>Team</th>
-              <th>Kills</th>
-              <th>Assists</th>
-              <th>Damage</th>
-              <th>Headshots</th>
-              <th>Revives</th>
-              <th>DBNOs</th>
-              <th>Longest Kill</th>
-              <th>Survived</th>
+              <th>מקום</th>
+              <th>שחקן</th>
+              <th>קבוצה</th>
+              <th>הריגות</th>
+              <th>סיוע</th>
+              <th>נזק</th>
+              <th>יריות ראש</th>
+              <th>החייאות</th>
+              <th>הפלות</th>
+              <th>ירייה ארוכה</th>
+              <th>זמן שרידות</th>
             </tr>
           </thead>
           <tbody>
